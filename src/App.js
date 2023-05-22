@@ -67,22 +67,29 @@ function App() {
             <MetamaskButton onConnect={setWalletAddress} />
             {walletAddress && <p> {walletAddress}</p>}
           </p>
-        </header>
-      </div>
-      <div>
-        {positions.map((position) => (
           <div>
             {positions.map((position) => (
-              <div key={position.id}>
-                <h2>Position ID: {position.id}</h2>
-                <p>Owner: {position.owner}</p>
-                <p>Liquidity: {position.liquidity}</p>
-                <p>Tick Lower: {position.tickLower.id}</p>
-                <p>Tick Upper: {position.tickUpper.id}</p>
+              <div>
+                {positions.map((position) => (
+                  <div key={position.id}>
+                    <h2>ID de la posición: {position.id}</h2>
+                    <p>Owner: {position.owner}</p>
+                    <p>Liquidez: {position.liquidity}</p>
+                    <p>
+                      Rango bajo: 
+                      {parseFloat(
+                        ((1.0001 ** parseInt(position.tickLower.id.split('#')[1])) * (10 ** 12))
+                      )}
+                    </p>
+                    <p>Rango alto: {parseFloat(
+                        ((1.0001 ** parseInt(position.tickUpper.id.split('#')[1])) * (10 ** 12))
+                      )}</p>
+                  </div>
+                ))}
               </div>
             ))}
           </div>
-        ))}
+        </header>
       </div>
     </>
   );

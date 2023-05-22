@@ -68,7 +68,10 @@ function App() {
             {walletAddress && <p> {walletAddress}</p>}
           </p>
           <div>
-            {positions.map((position) => (
+          {positions.length === 0 ? (
+      <p>No hay ninguna pool activa ahora mismo</p>
+    ) : (
+            positions.map((position) => (
               <div>
                 {positions.map((position) => (
                   <div key={position.id}>
@@ -76,8 +79,7 @@ function App() {
                     <p>Owner: {position.owner}</p>
                     <p>Liquidez: {position.liquidity}</p>
                     <p>
-                      Rango bajo: 
-                      {parseFloat(
+                      Rango bajo: {parseFloat(
                         ((1.0001 ** parseInt(position.tickLower.id.split('#')[1])) * (10 ** 12))
                       )}
                     </p>
@@ -87,7 +89,7 @@ function App() {
                   </div>
                 ))}
               </div>
-            ))}
+            )))}
           </div>
         </header>
       </div>

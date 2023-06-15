@@ -102,7 +102,9 @@ function App() {
         let amount1Human = Math.abs(amount1wei / 10 ** decimal1).toFixed(
           decimal1
         );
+        const actualPrice = (sqrtPrice / 2**96)**2 * 10**(decimal0-decimal1)
 
+        console.log("precio actual", actualPrice)
         console.log("Liquidez:", liquidity);
         console.log("sqrtPrice:", sqrtPriceX96);
         console.log("Amount amount0Human: ", amount0Human);

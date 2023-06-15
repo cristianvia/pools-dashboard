@@ -1,8 +1,8 @@
-import './MetamaskBtn.css';
+import "./MetamaskBtn.css";
 
-import { useState } from 'react';
-import detectEthereumProvider from '@metamask/detect-provider';
-import Web3 from 'web3';
+import { useState } from "react";
+import detectEthereumProvider from "@metamask/detect-provider";
+import Web3 from "web3";
 
 const MetamaskButton = ({ onConnect }) => {
   const [address, setAddress] = useState(null);
@@ -17,27 +17,23 @@ const MetamaskButton = ({ onConnect }) => {
         setAddress(address);
         onConnect(address);
       } else {
-        console.error('Metamask not installed');
+        console.error("Metamask not installed");
       }
     } catch (error) {
       console.error(error);
     }
   };
 
-  if (address) {
-    return (
-      <p>
-        ¡Bienvenido!
-      </p>
-    );
-  } else {
+  if (!address)
     return (
       <button onClick={connectToMetamask}>
-        <img src="https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/metamask-fox.svg" alt="Metamask icon" />
+        <img
+          src="https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/metamask-fox.svg"
+          alt="Metamask icon"
+        />
         Conectar con Metamask
       </button>
     );
-  }
 };
 
 export default MetamaskButton;

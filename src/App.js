@@ -7,6 +7,9 @@ const { JSBI } = require("@uniswap/sdk");
 function App() {
   const [walletAddress, setWalletAddress] = useState(null);
   const [positions, setPositions] = useState([]);
+  const [actualPriceState, setActualPriceState] = useState(null);
+  const [maticAmount, setMaticAmount] = useState(null);
+  const [usdcAmount, setUsdcAmount] = useState(null);
   let liquidity = 0;
 
   useEffect(() => {
@@ -99,12 +102,15 @@ function App() {
         let amount0Human = Math.abs(amount0wei / 10 ** decimal0).toFixed(
           decimal0
         );
+        setMaticAmount(amount0Human);
         let amount1Human = Math.abs(amount1wei / 10 ** decimal1).toFixed(
           decimal1
         );
-        const actualPrice = (sqrtPrice / 2**96)**2 * 10**(decimal0-decimal1)
+        setUsdcAmount(amount1Human);
+        const actualPrice = sqrtPrice ** 2 * 10 ** (decimal0 - decimal1);
+        setActualPriceState(actualPrice);
 
-        console.log("precio actual", actualPrice)
+        console.log("precio actual", actualPrice);
         console.log("Liquidez:", liquidity);
         console.log("sqrtPrice:", sqrtPriceX96);
         console.log("Amount amount0Human: ", amount0Human);
@@ -141,7 +147,7 @@ function App() {
                 <div key={position.id}>
                   <h2>ID de la posición: {position.id}</h2>
                   <p>Owner: {position.owner}</p>
-                  <p>Liquidez: {liquidity}</p>
+                  {actualPriceState && <p>Precio actual: {actualPriceState}</p>}
                   <p>
                     Rango bajo:{" "}
                     {parseFloat(
@@ -156,6 +162,8 @@ function App() {
                         10 ** 12
                     )}
                   </p>
+                  {maticAmount && <p>Cantidad total MATIC: {maticAmount}</p>}
+                  {maticAmount && <p>Cantidad total USDC: {usdcAmount}</p>}
                 </div>
               ))
             )}

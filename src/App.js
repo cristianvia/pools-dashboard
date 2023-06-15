@@ -25,7 +25,8 @@ function App() {
               orderBy: id
               orderDirection: desc
               first: 1
-              where: { owner: "0x79ba030fe10b5bb6a31f5faa0fa1d05bc23c5dc8", pool: "0xa374094527e1673a86de625aa59517c5de346d32" }
+              #where: {owner: "${walletAddress}", pool: "0xa374094527e1673a86de625aa59517c5de346d32"}
+              where: {owner: "0x79ba030fe10b5bb6a31f5faa0fa1d05bc23c5dc8", pool: "0xa374094527e1673a86de625aa59517c5de346d32"}
             ) {
               id
               owner

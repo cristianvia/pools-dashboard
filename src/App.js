@@ -10,6 +10,7 @@ function App() {
   const [actualPriceState, setActualPriceState] = useState(null);
   const [maticAmount, setMaticAmount] = useState(null);
   const [usdcAmount, setUsdcAmount] = useState(null);
+  const [totalAmount, setTotalAmount] = useState(null);
   let liquidity = 0;
 
   useEffect(() => {
@@ -107,8 +108,12 @@ function App() {
           decimal1
         );
         setUsdcAmount(amount1Human);
+
         const actualPrice = sqrtPrice ** 2 * 10 ** (decimal0 - decimal1);
         setActualPriceState(actualPrice);
+
+        const getTotalAmount = amount0Human * actualPrice + amount1Human;
+        setTotalAmount(getTotalAmount);
 
         console.log("precio actual", actualPrice);
         console.log("Liquidez:", liquidity);
@@ -147,23 +152,42 @@ function App() {
                 <div key={position.id}>
                   <h2>ID de la posición: {position.id}</h2>
                   <p>Owner: {position.owner}</p>
-                  {actualPriceState && <p>Precio actual: {actualPriceState}</p>}
+                  {actualPriceState && (
+                    <p>Precio actual: {actualPriceState.toFixed(2)}</p>
+                  )}
                   <p>
                     Rango bajo:{" "}
                     {parseFloat(
                       1.0001 ** parseInt(position.tickLower.id.split("#")[1]) *
                         10 ** 12
-                    )}
+                    ).toFixed(2)}
                   </p>
                   <p>
                     Rango alto:{" "}
                     {parseFloat(
                       1.0001 ** parseInt(position.tickUpper.id.split("#")[1]) *
                         10 ** 12
-                    )}
+                    ).toFixed(2)}
                   </p>
-                  {maticAmount && <p>Cantidad total MATIC: {maticAmount}</p>}
-                  {maticAmount && <p>Cantidad total USDC: {usdcAmount}</p>}
+                  {maticAmount && (
+                    <p>
+                      Cantidad total MATIC: {parseInt(maticAmount).toFixed(2)}
+                    </p>
+                  )}
+                  {usdcAmount && (
+                    <p>
+                      Cantidad total USDC: {parseInt(usdcAmount).toFixed(2)}
+                    </p>
+                  )}
+                  {totalAmount && (
+                    <p>Liquidez total: {parseInt(totalAmount).toFixed(2)}</p>
+                  )}
+                  <a
+                    className="whiteColor"
+                    href={`https://app.uniswap.org/#/pools/${position.id}`}
+                  >
+                    <h5>Ver posición en uniswap</h5>
+                  </a>
                 </div>
               ))
             )}

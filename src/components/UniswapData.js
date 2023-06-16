@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import MetamaskButton from "./MetamaskButton";
 
 const { JSBI } = require("@uniswap/sdk");
 
@@ -141,9 +140,6 @@ function UniswapData() {
     <>
       <div className="App">
         <header className="App-header">
-          <p>
-            <MetamaskButton onConnect={setWalletAddress} />
-          </p>
           <div>
             {positions.length === 0 ? (
               <p>No hay ninguna pool activa ahora mismo</p>

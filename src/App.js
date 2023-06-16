@@ -75,7 +75,7 @@ const App = () => {
               <Routes>
                 {/* dashboard  */}
                 <Route path="/" element={<Home />} />
-                <Route path="/eome" element={<Home />} />
+                <Route path="/home" element={<Home />} />
 
                 {/* pages  */}
                 <Route path="/orders" element={<Orders />} />

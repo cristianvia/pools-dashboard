@@ -1,4 +1,4 @@
-import "./MetamaskBtn.css";
+import "../styles/MetamaskBtn.css";
 
 import { useState } from "react";
 import detectEthereumProvider from "@metamask/detect-provider";
@@ -14,6 +14,7 @@ const MetamaskButton = ({ onConnect }) => {
         const web3 = new Web3(provider);
         const accounts = await web3.eth.requestAccounts();
         const address = accounts[0];
+        sessionStorage.setItem("metamaskAddress", address);
         setAddress(address);
         onConnect(address);
       } else {

@@ -47,7 +47,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className={currentMode === "Dark" ? "dark" : ""}>
+    <div className="dark">
       <BrowserRouter>
         <div className="flex relative dark:bg-main-dark-bg">
           {activeMenu ? (

@@ -27,7 +27,7 @@ const MetamaskButton = ({ onConnect }) => {
 
   if (!address)
     return (
-      <button onClick={connectToMetamask}>
+      <button onClick={connectToMetamask} className="mmButton">
         <img
           src="https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/metamask-fox.svg"
           alt="Metamask icon"

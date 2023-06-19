@@ -8,6 +8,10 @@ import {
   AiOutlineAreaChart,
   AiOutlineBarChart,
   AiOutlineStock,
+  AiFillPushpin,
+  AiOutlineEuroCircle,
+  AiFillCaretDown,
+  AiFillCaretUp
 } from "react-icons/ai";
 import {
   FiShoppingBag,
@@ -25,6 +29,9 @@ import {
   BsCurrencyDollar,
   BsShield,
   BsChatLeft,
+  BsFillBarChartFill,
+  BsCurrencyBitcoin,
+  BsCurrencyExchange
 } from "react-icons/bs";
 import { BiColorFill } from "react-icons/bi";
 import { IoMdContacts } from "react-icons/io";
@@ -191,7 +198,7 @@ function UniswapData() {
                 type="button"
                 className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
               >
-                <MdOutlineSupervisorAccount />
+                <AiFillPushpin />
               </button>
               <p className="mt-3">
                 <span className="text-lg font-semibold">{position.id}</span>
@@ -203,7 +210,7 @@ function UniswapData() {
                 type="button"
                 className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
               >
-                <MdOutlineSupervisorAccount />
+                <BsFillBarChartFill />
               </button>
               <p className="mt-3">
                 <span className="text-lg font-semibold">
@@ -220,7 +227,7 @@ function UniswapData() {
                 type="button"
                 className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
               >
-                <MdOutlineSupervisorAccount />
+                <AiFillCaretDown />
               </button>
               <p className="mt-3">
                 <span className="text-lg font-semibold">
@@ -238,7 +245,7 @@ function UniswapData() {
                 type="button"
                 className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
               >
-                <MdOutlineSupervisorAccount />
+                <AiFillCaretUp />
               </button>
               <p className="mt-3">
                 <span className="text-lg font-semibold">
@@ -256,7 +263,7 @@ function UniswapData() {
                 type="button"
                 className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
               >
-                <MdOutlineSupervisorAccount />
+                <BsCurrencyBitcoin />
               </button>
               <p className="mt-3">
                 <span className="text-lg font-semibold">
@@ -275,7 +282,7 @@ function UniswapData() {
                 type="button"
                 className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
               >
-                <MdOutlineSupervisorAccount />
+                <BsCurrencyDollar />
               </button>
               <p className="mt-3">
                 <span className="text-lg font-semibold">
@@ -292,7 +299,7 @@ function UniswapData() {
                 type="button"
                 className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
               >
-                <MdOutlineSupervisorAccount />
+                <BsCurrencyExchange />
               </button>
               <p className="mt-3">
                 <span className="text-lg font-semibold">
@@ -306,6 +313,7 @@ function UniswapData() {
 
             <a
               style={{color:"white"}}
+              target="_blank"
               href={`https://app.uniswap.org/#/pools/${position.id}`}
             >
               <h5>Ver posición en uniswap</h5>

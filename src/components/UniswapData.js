@@ -173,7 +173,7 @@ function UniswapData() {
   return (
     <>
       {positions.length === 0 ? (
-        <p>No hay ninguna pool activa ahora mismo</p>
+        <p style={{color:"white"}}>No hay ninguna pool activa ahora mismo</p>
       ) : (
         positions.map((position) => (
           <div
@@ -305,7 +305,7 @@ function UniswapData() {
             </div>
 
             <a
-              className="whiteColor"
+              style={{color:"white"}}
               href={`https://app.uniswap.org/#/pools/${position.id}`}
             >
               <h5>Ver posición en uniswap</h5>

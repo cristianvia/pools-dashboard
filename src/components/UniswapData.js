@@ -1,6 +1,40 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+/* No todos son necesarios */
+import {
+  AiOutlineCalendar,
+  AiOutlineShoppingCart,
+  AiOutlineAreaChart,
+  AiOutlineBarChart,
+  AiOutlineStock,
+} from "react-icons/ai";
+import {
+  FiShoppingBag,
+  FiEdit,
+  FiPieChart,
+  FiBarChart,
+  FiCreditCard,
+  FiStar,
+  FiShoppingCart,
+} from "react-icons/fi";
+import {
+  BsKanban,
+  BsBarChart,
+  BsBoxSeam,
+  BsCurrencyDollar,
+  BsShield,
+  BsChatLeft,
+} from "react-icons/bs";
+import { BiColorFill } from "react-icons/bi";
+import { IoMdContacts } from "react-icons/io";
+import { RiContactsLine, RiStockLine } from "react-icons/ri";
+import { MdOutlineSupervisorAccount } from "react-icons/md";
+import { HiOutlineRefresh } from "react-icons/hi";
+import { TiTick } from "react-icons/ti";
+import { GiLouvrePyramid } from "react-icons/gi";
+import { GrLocation } from "react-icons/gr";
+
 const { JSBI } = require("@uniswap/sdk");
 
 function UniswapData() {
@@ -138,58 +172,147 @@ function UniswapData() {
 
   return (
     <>
-      <div className="App">
-        <header className="App-header">
-          <div>
-            {positions.length === 0 ? (
-              <p>No hay ninguna pool activa ahora mismo</p>
-            ) : (
-              positions.map((position) => (
-                <div key={position.id}>
-                  <h2>ID de la posición: {position.id}</h2>
-                  <p>Owner: {position.owner}</p>
+      {positions.length === 0 ? (
+        <p>No hay ninguna pool activa ahora mismo</p>
+      ) : (
+        positions.map((position) => (
+          <div
+            key={position.id}
+            className="flex m-3 flex-wrap justify-center gap-1 items-center"
+          >
+            {/* Añadir styles customizados a cada icon: background, color y icon diferente
+            
+            
+            
+            TODO
+            */}
+            <div className="bg-white h-44 dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56  p-4 pt-9 rounded-2xl ">
+              <button
+                type="button"
+                className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
+              >
+                <MdOutlineSupervisorAccount />
+              </button>
+              <p className="mt-3">
+                <span className="text-lg font-semibold">{position.id}</span>
+              </p>
+              <p className="text-sm text-gray-400  mt-1">ID de la posición</p>
+            </div>
+            <div className="bg-white h-44 dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56  p-4 pt-9 rounded-2xl ">
+              <button
+                type="button"
+                className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
+              >
+                <MdOutlineSupervisorAccount />
+              </button>
+              <p className="mt-3">
+                <span className="text-lg font-semibold">
                   {actualPriceState && (
-                    <p>Precio actual: {actualPriceState.toFixed(2)}</p>
+                    <span>{actualPriceState.toFixed(5)}</span>
                   )}
-                  <p>
-                    Rango bajo:{" "}
-                    {parseFloat(
-                      1.0001 ** parseInt(position.tickLower.id.split("#")[1]) *
-                        10 ** 12
-                    ).toFixed(2)}
-                  </p>
-                  <p>
-                    Rango alto:{" "}
-                    {parseFloat(
-                      1.0001 ** parseInt(position.tickUpper.id.split("#")[1]) *
-                        10 ** 12
-                    ).toFixed(2)}
-                  </p>
+                </span>
+              </p>
+              <p className="text-sm text-gray-400  mt-1">Precio actual</p>
+            </div>
+
+            <div className="bg-white h-44 dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56  p-4 pt-9 rounded-2xl ">
+              <button
+                type="button"
+                className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
+              >
+                <MdOutlineSupervisorAccount />
+              </button>
+              <p className="mt-3">
+                <span className="text-lg font-semibold">
+                  {parseFloat(
+                    1.0001 ** parseInt(position.tickLower.id.split("#")[1]) *
+                      10 ** 12
+                  ).toFixed(5)}
+                </span>
+              </p>
+              <p className="text-sm text-gray-400  mt-1">Rango bajo</p>
+            </div>
+
+            <div className="bg-white h-44 dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56  p-4 pt-9 rounded-2xl ">
+              <button
+                type="button"
+                className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
+              >
+                <MdOutlineSupervisorAccount />
+              </button>
+              <p className="mt-3">
+                <span className="text-lg font-semibold">
+                  {parseFloat(
+                    1.0001 ** parseInt(position.tickUpper.id.split("#")[1]) *
+                      10 ** 12
+                  ).toFixed(5)}
+                </span>
+              </p>
+              <p className="text-sm text-gray-400  mt-1">Rango alto</p>
+            </div>
+
+            <div className="bg-white h-44 dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56  p-4 pt-9 rounded-2xl ">
+              <button
+                type="button"
+                className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
+              >
+                <MdOutlineSupervisorAccount />
+              </button>
+              <p className="mt-3">
+                <span className="text-lg font-semibold">
                   {maticAmount && (
-                    <p>
-                      Cantidad total MATIC: {parseInt(maticAmount).toFixed(2)}
-                    </p>
+                    <span>{parseInt(maticAmount).toFixed(5)}</span>
                   )}
-                  {usdcAmount && (
-                    <p>
-                      Cantidad total USDC: {parseInt(usdcAmount).toFixed(2)}
-                    </p>
+                </span>
+              </p>
+              <p className="text-sm text-gray-400  mt-1">
+                Cantidad total MATIC
+              </p>
+            </div>
+
+            <div className="bg-white h-44 dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56  p-4 pt-9 rounded-2xl ">
+              <button
+                type="button"
+                className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
+              >
+                <MdOutlineSupervisorAccount />
+              </button>
+              <p className="mt-3">
+                <span className="text-lg font-semibold">
+                  {maticAmount && (
+                    <span>{parseInt(usdcAmount).toFixed(5)}</span>
                   )}
-                  {totalAmount && (
-                    <p>Liquidez total: {parseInt(totalAmount).toFixed(2)}</p>
+                </span>
+              </p>
+              <p className="text-sm text-gray-400  mt-1">Cantidad total USDC</p>
+            </div>
+
+            <div className="bg-white h-44 dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56  p-4 pt-9 rounded-2xl ">
+              <button
+                type="button"
+                className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
+              >
+                <MdOutlineSupervisorAccount />
+              </button>
+              <p className="mt-3">
+                <span className="text-lg font-semibold">
+                  {maticAmount && (
+                    <span>{parseInt(totalAmount).toFixed(5)}</span>
                   )}
-                  <a
-                    className="whiteColor"
-                    href={`https://app.uniswap.org/#/pools/${position.id}`}
-                  >
-                    <h5>Ver posición en uniswap</h5>
-                  </a>
-                </div>
-              ))
-            )}
+                </span>
+              </p>
+              <p className="text-sm text-gray-400  mt-1">Liquidez total</p>
+            </div>
+
+            <a
+              className="whiteColor"
+              href={`https://app.uniswap.org/#/pools/${position.id}`}
+            >
+              <h5>Ver posición en uniswap</h5>
+            </a>
           </div>
-        </header>
-      </div>
+        ))
+      )}
     </>
   );
 }
